@@ -8,13 +8,13 @@
 
 stdenv.mkDerivation rec {
   pname = "zxing-cpp";
-  version = "1.4.0";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "nu-book";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-MTu8tvJXpo6+Z0aSIZ27nmerNtNBOwnL/jDkGedIiM8=";
+    hash = "sha256-atBHqwLGrSZmv5KSZqBu7N8N1PODvAhhxvRZA0mENt0=";
   };
 
   nativeBuildInputs = [
@@ -29,11 +29,11 @@ stdenv.mkDerivation rec {
 
   # https://github.com/nu-book/zxing-cpp/issues/335
   postPatch = ''
-    substituteInPlace CMakeLists.txt \
+    substituteInPlace core/CMakeLists.txt \
       --replace 'configure_file(zxing.pc.in' \
                 'include(GNUInstallDirs)
                  configure_file(zxing.pc.in'
-    substituteInPlace zxing.pc.in \
+    substituteInPlace core/zxing.pc.in \
       --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \
       --replace '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@
   '';
