@@ -158,7 +158,6 @@ in
         cp ${nodeYaml} ${cfg.configDir}/redpanda.yaml
 
         rpk redpanda mode ${runMode} --config ${cfg.configDir}/redpanda.yaml
-        rpk redpanda tune all $CPUSET --config ${cfg.configDir}/redpanda.yaml
       ''; # Do we need to include disks to tune also (--disks flag)?
       environment = {
         START_ARGS = "--check=true";
