@@ -17,7 +17,7 @@ buildGoModule rec {
   # For patchShebangs
   buildInputs = [ bash ];
 
-  vendorHash = "sha256-sP9lboy1M4+AB1Z0VsX5eNxZ9ckuJBgEPxavAbOSk8g=";
+  vendorHash = "sha256-BEXP5JUV3QhbyhyiuARyr2je0wxcqUj9jLnH0v/A6BA=";
 
   src = fetchFromGitLab {
     owner = "gitlab-org";
@@ -29,6 +29,7 @@ buildGoModule rec {
   patches = [
     ./fix-shell-path.patch
     ./remove-bash-test.patch
+    ./docker-client-http.patch
   ];
 
   prePatch = ''
